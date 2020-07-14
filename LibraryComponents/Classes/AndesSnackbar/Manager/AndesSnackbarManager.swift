@@ -106,6 +106,8 @@ class AndesSnackbarManager {
 
     func dismissSnackbarAnimated(snackbar: AndesSnackbar) {
         guard let superview = snackbar.superview else {
+            self.snackbarsQueue.removeFirst()
+            self.showNextSnackbar()
             return
         }
 
