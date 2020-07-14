@@ -30,11 +30,15 @@ class AndesSnackbarManager {
 
     /// Shows the first snackbar in the `snackbarsQueue`
     func showNextSnackbar() {
-        if let snackbar = snackbarsQueue.first,
-            let context = snackbar.context {
+        guard let snackbar = snackbarsQueue.first else { return }
+
+        if let context = snackbar.context {
             addSnackbarToView(snackbar: snackbar, superView: context.view)
             showAnimated(snackbar: snackbar)
             setDismissTimer(snackbar: snackbar)
+        } else {
+            self.snackbarsQueue.removeFirst()
+            self.showNextSnackbar()
         }
     }
 
