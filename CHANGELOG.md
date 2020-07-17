@@ -1,3 +1,8 @@
+## Unpublished
+### 🛠 Bug fixes
+
+- AndesSnackbar: Fixes snackbarsQueue logic when a snackbar is no longer visible| Authors: [@EdenTorres](https://github.com/mercadolibre/fury_andesui-ios) 
+
 ## v3.6.0
 ### 🚀 Features
 - Andes Message: Now allows to have a `Link Action` in the place of primary button, it has the same function as a button with a new layout defined by Andes's UX. | Authors: [@lelalesi](https://github.com/lelalesi)
