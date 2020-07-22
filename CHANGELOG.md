@@ -1,5 +1,6 @@
 ## v3.6.0
 ### 🚀 Features
+- New component: AndesThumbnail | Authors: [@alejoecheguia](https://github.com/alejoecheguia)
 - Andes Message: Now allows to have a `Link Action` in the place of primary button, it has the same function as a button with a new layout defined by Andes's UX. | Authors: [@lelalesi](https://github.com/lelalesi)
 - AndesSnackbar: Fixes snackbarsQueue logic when a snackbar is no longer visible| Authors: [@EdenTorres](https://github.com/mercadolibre/fury_andesui-ios) 
 
@@ -13,6 +14,7 @@
 
 ### 🛠 Bug fixes
 - AndesMessage: Constraints priority fix | Authors: [@MaxiTalenti](https://github.com/mercadolibre/fury_andesui-ios)
+- AndesColor: Background color has alpha but has to be solid | Authors: [@jcenturion18](https://github.com/jcenturion18/)
 
 # v3.4.0
 ### 🛠 Bug fixes
