@@ -25,7 +25,6 @@ class AndesCoachMarkFooterView: UIView {
     // MARK: - Initialization
     required init() {
         super.init(frame: .zero)
-
         setupViews()
     }
 
@@ -33,19 +32,18 @@ class AndesCoachMarkFooterView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 96).isActive = true
 
-        setupNextButton()
+        //setupNextButton()
     }
 
     private func setupNextButton() {
         nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(nextButton)
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: 32),
+            nextButton.topAnchor.constraint(equalTo: topAnchor, constant: -16),
             nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            nextButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -64)
         ])
     }
 
