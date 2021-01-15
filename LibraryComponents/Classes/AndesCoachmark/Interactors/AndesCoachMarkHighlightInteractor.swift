@@ -12,16 +12,16 @@ protocol AndesCoachMarkHighlightInteractorProtocol: class {
     func getHighlightCornerRadius() -> CGFloat
     func getMaskPath() -> CGPath
     func isHighlightedViewBelow() -> Bool
-    func update(view: UIView, style: AndesCoachMarkStepEntity.HighlightStyle)
+    func update(view: UIView, style: AndesCoachMarkStepEntity.HighlightStyle, margin: CGFloat)
 }
 
 class AndesCoachMarkHighlightInteractor {
 
     private var view: UIView
     private var style: AndesCoachMarkStepEntity.HighlightStyle
+    private var margin: CGFloat
     private let overlayView: UIView
     private let bodyViewBounds: CGRect
-    private let margin: CGFloat
 
     private var highlightedRect: CGRect { highlightedRectCalculation() }
 
@@ -47,9 +47,9 @@ class AndesCoachMarkHighlightInteractor {
         //Vertical excess
         if !isContainedVertically(rectConverted.insetBy(dx: 0, dy: -margin), in: bodyViewBounds) {
             if rectConverted.isAbove(of: bodyViewBounds) {
-                return CGRect(x: rectConvertedCuttedX, y: bodyViewBounds.minY + margin, width: rectConvertedCuttedWidth, height: rectConverted.maxY - bodyViewBounds.minY - margin)
+                return CGRect(x: rectConvertedCuttedX, y: rectConverted.minY + margin, width: rectConvertedCuttedWidth, height: rectConverted.maxY - rectConverted.minY - margin)
             } else {
-                return CGRect(x: rectConvertedCuttedX, y: rectConverted.minY, width: rectConvertedCuttedWidth, height: bodyViewBounds.maxY - rectConverted.minY - margin)
+                return CGRect(x: rectConvertedCuttedX, y: rectConverted.minY, width: rectConvertedCuttedWidth, height: rectConverted.maxY - rectConverted.minY - margin)
             }
         } else {
             return CGRect(x: rectConvertedCuttedX, y: rectConverted.origin.y, width: rectConvertedCuttedWidth, height: rectConverted.height)
@@ -75,9 +75,10 @@ class AndesCoachMarkHighlightInteractor {
 }
 
 extension AndesCoachMarkHighlightInteractor: AndesCoachMarkHighlightInteractorProtocol {
-    func update(view: UIView, style: AndesCoachMarkStepEntity.HighlightStyle) {
+    func update(view: UIView, style: AndesCoachMarkStepEntity.HighlightStyle, margin: CGFloat) {
         self.view = view
         self.style = style
+        self.margin = margin
     }
 
     func getHighlightRect() -> CGRect {

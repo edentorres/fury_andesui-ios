@@ -17,7 +17,7 @@ internal struct AndesButtonHierarchyQuiet: AndesButtonHierarchyProtocol {
 
     public var disableColor: UIColor = UIColor.Andes.gray100
 
-    public var fontColor: UIColor = AndesStyleSheetManager.styleSheet.accentColor
+    public var fontColor: UIColor = .white
 
     var spinnerTintColor: UIColor = AndesStyleSheetManager.styleSheet.accentColor
 }

@@ -12,8 +12,9 @@ extension AndesCoachMarkView: AndesCoachMarkViewProtocol {
         return body
     }
 
-    func setNavBar(_ title: String) {
+    func setNavBar(_ title: String, shouldShowCloseButton: Bool = true) {
         navBar.title = title
+        navBar.showCloseButton = shouldShowCloseButton
         bringSubviewToFront(navBar)     //Workaround porque sino el overlay me afecta la vista
         layoutIfNeeded()
     }
@@ -27,6 +28,7 @@ extension AndesCoachMarkView: AndesCoachMarkViewProtocol {
     func setBody(_ presenter: AndesCoachMarkBodyPresenter, removePrevious: Bool) {
         if removePrevious { body?.removeFromSuperview() }
         body = AndesCoachMarkBodyView(presenter: presenter)
+        body?.delegate = self
 
         guard let body = body else { return }
         body.alpha = 0

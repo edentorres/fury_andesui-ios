@@ -18,6 +18,12 @@ class AndesCoachMarkNavBarView: UIView {
              titleLabel.text = title
         }
     }
+
+    var showCloseButton = true {
+        didSet {
+            closeButton.isHidden = !showCloseButton
+        }
+    }
     private lazy var closeButton = UIButton(type: .system)
     private lazy var titleLabel = UILabel()
 
@@ -49,8 +55,8 @@ class AndesCoachMarkNavBarView: UIView {
 
         addSubview(closeButton)
         NSLayoutConstraint.activate([
-            closeButton.heightAnchor.constraint(equalToConstant: 20),
-            closeButton.widthAnchor.constraint(equalToConstant: 20),
+            closeButton.heightAnchor.constraint(equalToConstant: 24),
+            closeButton.widthAnchor.constraint(equalToConstant: 24),
             closeButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             closeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
         ])
@@ -58,14 +64,13 @@ class AndesCoachMarkNavBarView: UIView {
     }
 
     private func setupTitle() {
-        titleLabel.setAndesStyle(style: AndesFontStyle(textColor: AndesStyleSheetManager.styleSheet.textColorWhite, font: AndesStyleSheetManager.styleSheet.regularSystemFont(size: AndesFontSize.bodyM), sketchLineHeight: 18))
+        titleLabel.setAndesStyle(style: AndesFontStyle(textColor: AndesStyleSheetManager.styleSheet.textColorWhite, font: AndesStyleSheetManager.styleSheet.regularSystemFont(size: AndesFontSize.bodyS), sketchLineHeight: 18))
 
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: closeButton.leadingAnchor, constant: -24)
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
 
     }
