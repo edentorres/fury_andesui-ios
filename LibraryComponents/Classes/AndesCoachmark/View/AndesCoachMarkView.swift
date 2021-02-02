@@ -51,6 +51,10 @@ import UIKit
         setupAccessibility()
     }
 
+    @objc public func setTrackingDelegate(with delegate: AndesCoachMarkTrackingDelegate) {
+        presenter.setTrackingDelegate(with: delegate)
+    }
+
     private func setupViews() {
         alpha = 0.0
         presenter.view = self
@@ -101,13 +105,17 @@ import UIKit
         accessibilityElements = [navBar, bodyView]
     }
 
+    func setCorrectFocusForAccessibility() {
+        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: navBar)
+    }
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("This class does not support NSCoding")
     }
 
     @objc public func start() {
         presenter.start()
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: navBar)
+        setCorrectFocusForAccessibility()
     }
 
     @objc public func cancel() {
@@ -127,6 +135,6 @@ extension AndesCoachMarkView: AndesCoachMarkNavBarViewDelegate {
 extension AndesCoachMarkView: AndesCoachMarkBodyViewDelegate {
     func didNext() {
         presenter.didNextActionTap()
-        UIAccessibility.post(notification: UIAccessibility.Notification.screenChanged, argument: navBar)
+        setCorrectFocusForAccessibility()
     }
 }

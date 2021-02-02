@@ -10,6 +10,7 @@ import UIKit
 class AndesCoachMarkPresenter {
     private(set) var model: AndesCoachMarkEntity
     weak var view: AndesCoachMarkViewProtocol?
+    weak var trackingDelegate: AndesCoachMarkTrackingDelegate?
 
     var animated = true
 
@@ -26,6 +27,10 @@ class AndesCoachMarkPresenter {
     required init(model: AndesCoachMarkEntity, animated: Bool = true) {
         self.model = model
         self.animated = animated
+    }
+
+    func setTrackingDelegate(with delegate: AndesCoachMarkTrackingDelegate) {
+        trackingDelegate = delegate
     }
 
     private func createScrollInteractor() {
@@ -137,6 +142,7 @@ class AndesCoachMarkPresenter {
         createHighlightInteractor()
         createScrollInteractor()
         prepare()
+        trackingDelegate?.didShow()
     }
 
     func getWindow() -> UIWindow? {
@@ -153,11 +159,17 @@ extension AndesCoachMarkPresenter {
 
     func didNextActionTap() {
         view?.showNext(stepIndex: self.currentIndex)
+        if currentIndex + 1 == model.steps.count {
+            trackingDelegate?.didFinish()
+        } else {
+            trackingDelegate?.didNext(index: self.currentIndex)
+        }
         showNext()
     }
 
     func didCloseButtonTap() {
         view?.close(stepIndex: self.currentIndex)
+        trackingDelegate?.didClose(index: self.currentIndex)
         exit()
     }
 
